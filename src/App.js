@@ -8,28 +8,30 @@ var PICTUREPATHS = [
   "https://i.picsum.photos/id/79/200/300.jpg?hmac=uqOMZrx9qlolrYp0xS5t84xjCiD_BIjfxIugTa1xjho",
 ];
 
-const url = "https://api.unsplash.com/photos/"
-const key = "G9948LXbQF-N3HTLNsk7o_OaNDMAbeWnlw2La8xIb_0"
+const url = "https://api.unsplash.com/photos/";
+const key = "G9948LXbQF-N3HTLNsk7o_OaNDMAbeWnlw2La8xIb_0";
 
 class App extends React.Component {
-  state = { 
-    picturePath : [],
-    currentPic: 0 
+  state = {
+    picturePath: [],
+    currentPic: 0,
   };
 
-getPicture =()=>{
-  fetch(`${url}?client_id=${key}`)
-  .then(response => response.json())
-  .then(data => {
-    data.forEach(element => {
-    this.setState({picturePath: [...this.state.picturePath, element.urls.small]})
-  });
-  })
-}
+  getPicture = () => {
+    fetch(`${url}?client_id=${key}`)
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((element) => {
+          this.setState({
+            picturePath: [...this.state.picturePath, element.urls.small],
+          });
+        });
+      });
+  };
 
-componentDidMount=()=>{
-  this.getPicture();
-}
+  componentDidMount = () => {
+    this.getPicture();
+  };
 
   nextPic = () => {
     var current = this.state.currentPic;
@@ -56,7 +58,7 @@ componentDidMount=()=>{
 
   render() {
     //this.getPicture()
-    console.log(this.state.picturePath)
+    console.log(this.state.picturePath);
     return (
       <div>
         <ChoosePicture
